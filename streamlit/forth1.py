@@ -11,13 +11,13 @@ def app():
     st.write('Welcome to LSTM')
 
 def app():
-    START = '2010-01-01'
+    START = '2000-01-01'
     TODAY = date.today().strftime('%Y-%m-%d')
 
     user_input = st.text_input('Enter Stock Ticker', '^KS11')
     df = data.DataReader(user_input,"yahoo", START, TODAY)
     
-    st.subheader('Data from 2010 - 2021')
+    st.subheader('Data from 2000 - 2021')
     st.write(df.describe())
     
 
