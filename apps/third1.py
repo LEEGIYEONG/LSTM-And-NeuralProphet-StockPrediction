@@ -2,11 +2,8 @@ import streamlit as st
 from datetime import date
 import pandas as pd
 import pandas_datareader as data
-import yfinance as yf
 import pickle
 import numpy as np
-from fbprophet import Prophet
-from fbprophet.plot import plot_plotly
 from plotly import graph_objs as go
 import matplotlib.pyplot as plot
 from neuralprophet import NeuralProphet
