@@ -2,6 +2,7 @@ numpy==1.16.6
 streamlit==0.87.0 
 seaborn==0.11.1 
 pandas==1.2.4 
+plotly==5.1.0
 pandas_datareader==0.10.0
 tensorflow-cpu==2.5.0
 keras==2.5.0rc0
