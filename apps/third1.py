@@ -25,17 +25,21 @@ def app():
     st.subheader('Data from 2000 - 2021')
     st.write(df.describe())
 
-    model = NeuralProphet(n_changepoints=100,
-                      trend_reg=0.05,
-                      yearly_seasonality=False,
-                      weekly_seasonality=False,
-                      daily_seasonality=False)
-    metrics = model.fit(prcp_data, validate_each_epoch=True, 
-                    valid_p=0.2, freq='D', 
-                    plot_live_loss=True, 
-                    epochs=10)
-    future = model.make_future_dataframe(prcp_data, periods=365, n_historic_predictions=len(df))
-    forecast = model.predict(future)
+    model = NeuralProphet(
+    n_forecasts=60,
+    n_lags=60,
+    n_changepoints=100,
+    yearly_seasonality=True,
+    weekly_seasonality=True,
+    daily_seasonality=True,
+    batch_size=64,
+    epochs=50,
+    learning_rate=1.0,)
+    
+    model.fit(prcp_data, 
+          freq='D',
+          valid_p=0.2,
+          epochs=50)
 
     def plot_forecast(model, data, periods, historic_pred=True, highlight_steps_ahead=None):    
         global forecast
@@ -46,13 +50,22 @@ def app():
     
         if highlight_steps_ahead is not None:
             model = model.highlight_nth_step_ahead_of_each_forecast(highlight_steps_ahead)
-            mbodel.plot_last_forecast(forecast)
+            mobdel.plot_last_forecast(forecast)
         else:    
             model.plot(forecast)
 
     st.subheader('Predictions vs Actual')
-    fig, st = plot.subplots(figsize=(14, 10))
-    plot_forecast(model, prcp_data, periods=60)
-    model.plot(forecast, xlabel="Date", ylabel="Price")
-    st.set_title("KOSPI INDEX", fontsize=28, fontweight="bold")
-    st.pyplot()
+    fig1 = plot.figure(figsize=(12,6))
+    future = model.make_future_dataframe(prcp_data, periods=60, n_historic_predictions=True)
+    forecast = model.predict(future)
+    model.plot(forecast)
+    plot.xlabel('TIME')
+    plot.ylabel('Price')
+    plot.legend()
+    st.pyplot(forecast)
+
+    st.subheader('Trend')
+    fig2 = plot.figure(figsize=(12,6))
+    model = model.highlight_nth_step_ahead_of_each_forecast(1) # temporary workaround to plot actual AR weights
+    fig_param = model.plot_parameters()
+    st.pyplot(fig_param)

@@ -1,11 +1,9 @@
 import streamlit as st
 
 def app():
-    st.title('Home')
+    st.title('페이지마다 적용된 예측 알고리즘의 설명')
 
-    st.write('메인 홈페이지입니다')
-
-    st.write('LSTM모델을 사용하여 KOSPI 주가지수의 종가를 예측한다')
+    st.write('LSTM : KOSPI 주가지수의 종가를 수집하고 딥러닝 기법인 LSTM모델을 사용하여 KOSPI종가를 예측한다')
 
     st.write('NeuralProphet모델을 사용하여 KOSPI 주가지수의 종가를 예측한다')
 
