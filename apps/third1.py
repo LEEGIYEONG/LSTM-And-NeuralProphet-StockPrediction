@@ -36,36 +36,25 @@ def app():
     epochs=50,
     learning_rate=1.0,)
     
-    model.fit(prcp_data, 
-          freq='D',
-          valid_p=0.2,
-          epochs=50)
+    m = NeuralProphet(
+        n_lags=12,
+        changepoints_range=0.95,
+        n_changepoints=30,
+        weekly_seasonality=False,
+        batch_size=32,
+        epochs=50,
+        learning_rate=0.1,
+        )
+    metrics = m.fit(prcp_data, freq='5d')
 
-    def plot_forecast(model, data, periods, historic_pred=True, highlight_steps_ahead=None):    
-        global forecast
-        future = model.make_future_dataframe(data, 
-                                         periods=periods, 
-                                         n_historic_predictions=historic_pred)
-        forecast = model.predict(future)
-    
-        if highlight_steps_ahead is not None:
-            model = model.highlight_nth_step_ahead_of_each_forecast(highlight_steps_ahead)
-            mobdel.plot_last_forecast(forecast)
-        else:    
-            model.plot(forecast)
 
-    st.subheader('Predictions vs Actual')
-    fig1 = plot.figure(figsize=(12,6))
-    future = model.make_future_dataframe(prcp_data, periods=60, n_historic_predictions=True)
-    forecast = model.predict(future)
-    model.plot(forecast)
-    plot.xlabel('TIME')
-    plot.ylabel('Price')
-    plot.legend()
-    st.pyplot(forecast)
+    st.subheader('주가 예측')
+    future = m.make_future_dataframe(prcp_data, n_historic_predictions=True)
+    forecast = m.predict(future)
+    fig = m.plot(forecast)
+    st.pyplot(fig)
 
-    st.subheader('Trend')
-    fig2 = plot.figure(figsize=(12,6))
-    model = model.highlight_nth_step_ahead_of_each_forecast(1) # temporary workaround to plot actual AR weights
-    fig_param = model.plot_parameters()
+    st.subheader('추세, 변동성, 자기회귀 그래프')
+    m = m.highlight_nth_step_ahead_of_each_forecast(1) # temporary workaround to plot actual AR weights
+    fig_param = m.plot_parameters()
     st.pyplot(fig_param)

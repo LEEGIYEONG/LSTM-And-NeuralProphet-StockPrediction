@@ -21,7 +21,7 @@ def app():
     st.write(df.describe())
     
 
-    st.subheader('Closing Price vs Time chart')
+    st.subheader('현재 주가 차트')
     fig = plt.figure(figsize = (12,6))
     plt.plot(df.Close)
     st.pyplot(fig)
@@ -65,7 +65,7 @@ def app():
     y_test = y_test * scale_factor
 
 
-    st.subheader('Predictions vs Actual')
+    st.subheader('주가 예측')
     fig2 = plt.figure(figsize=(12,6))
     plt.plot(y_test, 'b', label = 'Actual Price')
     plt.plot(y_predicted, 'r', label = 'Predicted Price')
