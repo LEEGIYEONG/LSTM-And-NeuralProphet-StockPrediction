@@ -19,32 +19,24 @@ def app():
     user_input = st.text_input('Enter Stock Ticker', '^KS11')
     df = data.DataReader(user_input,"yahoo", START, TODAY)
 
-    data = df.reset_index()
-    prcp_data = data.rename(columns={'Date': 'ds', 'Close': 'y'})[['ds', 'y']]
-    
     st.subheader('Data from 2000 - 2021')
     st.write(df.describe())
 
-    model = NeuralProphet(
-    n_forecasts=60,
-    n_lags=60,
-    n_changepoints=100,
-    yearly_seasonality=True,
-    weekly_seasonality=True,
-    daily_seasonality=True,
-    batch_size=64,
-    epochs=50,
-    learning_rate=1.0,)
+    data = df.reset_index()
+    prcp_data = data.rename(columns={'Date': 'ds', 'Close': 'y'})[['ds', 'y']]
     
+
     m = NeuralProphet(
-        n_lags=12,
+        n_forecasts=60,
+        n_lags=60,
+        n_changepoints=100,
         changepoints_range=0.95,
-        n_changepoints=30,
-        weekly_seasonality=False,
-        batch_size=32,
+        yearly_seasonality=True,
+        weekly_seasonality=True,
+        daily_seasonality=True,
+        batch_size=64,
         epochs=50,
-        learning_rate=0.1,
-        )
+        learning_rate=1.0,)
     metrics = m.fit(prcp_data, freq='5d')
 
 
