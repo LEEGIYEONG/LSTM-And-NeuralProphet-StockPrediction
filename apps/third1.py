@@ -19,8 +19,10 @@ def app():
     user_input = st.text_input('Enter Stock Ticker', '^KS11')
     df = data.DataReader(user_input,"yahoo", START, TODAY)
 
-    st.subheader('Data from 2000 - 2021')
-    st.write(df.describe())
+    st.subheader('현재 주가 차트')
+    fig = plot.figure(figsize = (12,6))
+    plot.plot(df.Close)
+    st.pyplot(fig)
 
     data = df.reset_index()
     prcp_data = data.rename(columns={'Date': 'ds', 'Close': 'y'})[['ds', 'y']]
