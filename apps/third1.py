@@ -11,13 +11,14 @@ from neuralprophet import set_random_seed
 from sklearn.metrics import mean_squared_error
 
 def app():
-    global data
-    global st
     START = '2000-01-01'
     TODAY = date.today().strftime('%Y-%m-%d')
 
     user_input = st.text_input('Enter Stock Ticker', '^KS11')
     df = data.DataReader(user_input,"yahoo", START, TODAY)
+
+    st.subheader('Data from 2000 - 2021')
+    st.write(df.describe())
 
     st.subheader('현재 주가 차트')
     fig = plot.figure(figsize = (12,6))
