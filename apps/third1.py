@@ -11,6 +11,7 @@ from neuralprophet import set_random_seed
 from sklearn.metrics import mean_squared_error
 
 def app():
+    global data
     START = '2000-01-01'
     TODAY = date.today().strftime('%Y-%m-%d')
 
