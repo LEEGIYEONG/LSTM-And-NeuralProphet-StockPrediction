@@ -63,7 +63,7 @@ def app():
 
     
     st.subheader('주가 예측')
-    fig2, ax = plt.figure(figsize=(12,6))
+    fig2 = plt.figure(figsize=(12,6))
     ax.plot(y_test, 'b', label = 'Actual Price')
     ax.plot(y_predicted, 'r', label = 'Predicted Price')
     ax.xlabel('TIME', fontsize = 20)
