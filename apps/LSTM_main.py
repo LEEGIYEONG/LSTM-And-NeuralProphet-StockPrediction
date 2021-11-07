@@ -63,10 +63,10 @@ def app():
 
     
     st.subheader('주가 예측')
-    fig2 = plt.figure(figsize=(12,6))
-    ax.plot(y_test, 'b', label = 'Actual Price')
-    ax.plot(y_predicted, 'r', label = 'Predicted Price')
-    ax.xlabel('TIME', fontsize = 20)
-    ax.ylabel('Price', fontsize = 20)
-    leg = ax.legend()
+    fig2 = plt.figure(figsize = (12,6))
+    plt.plot(y_test, 'b', label = 'Actual Price')
+    plt.plot(y_predicted, 'r', label = 'Predicted Price')
+    plt.xlabel('TIME')
+    plt.ylabel('Price')
+    plt.legend()
     st.pyplot(fig2)
