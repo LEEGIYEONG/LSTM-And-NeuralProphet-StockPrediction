@@ -47,6 +47,7 @@ def app():
 
 
     st.subheader('주가 예측')
+    st.write('예측 결과 : 검은색은 실제 주가지수를 의미, 파란색은 예측 주가지수를 의미 ')
     future = m.make_future_dataframe(prcp_data, n_historic_predictions=True)
     forecast = m.predict(future)
     fig = m.plot(forecast)
