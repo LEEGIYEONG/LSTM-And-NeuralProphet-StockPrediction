@@ -13,11 +13,11 @@ def app():
     user_input = st.text_input('Enter Stock Ticker', '^KS11')
     df = data.DataReader(user_input,"yahoo", START, TODAY)
     
-    st.subheader('Data from 2000 - 2021')
+    st.subheader('코스피 주가지수 2000 - 2021')
     st.write(df.describe())
     
 
-    st.subheader('현재 주가 차트')
+    st.subheader('코스피 주가지수 차트')
     fig = plt.figure(figsize = (12,6))
     plt.plot(df.Close)
     st.pyplot(fig)
