@@ -63,6 +63,7 @@ def app():
 
     
     st.subheader('주가 예측')
+    st.write('예측 결과 : 파란색은 실제 주가지수를 의미, 색은 예측 주가지수를 의미 ')
     fig2 = plt.figure(figsize = (12,6))
     plt.plot(y_test, 'b', label = 'Actual Price')
     plt.plot(y_predicted, 'r', label = 'Predicted Price')
