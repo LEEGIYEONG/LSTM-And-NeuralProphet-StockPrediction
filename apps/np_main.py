@@ -43,7 +43,10 @@ def app():
         batch_size=64,
         epochs=50,
         learning_rate=1.0,)
-    metrics = m.fit(prcp_data, freq='5d')
+    m.fit(prcp_data, 
+          freq='D',
+          valid_p=0.2,
+          epochs=50)
 
 
     st.subheader('주가 예측')
