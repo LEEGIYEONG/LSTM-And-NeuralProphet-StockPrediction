@@ -59,11 +59,11 @@ def app():
     plot.legend()
     plot.show();
     st.pyplot(fig)
-    
+    """
     st.subheader('추세, 변동성, 자기회귀 그래프')
     m = m.highlight_nth_step_ahead_of_each_forecast(1) # temporary workaround to plot actual AR weights
     fig_param = m.plot_parameters()
     plot.legend()
     plot.show();
     st.pyplot(fig_param)
-    
+    """
