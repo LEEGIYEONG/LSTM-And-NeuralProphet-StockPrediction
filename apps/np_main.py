@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import date
 import pandas as pd
-import pandas_datareader as data
+import FinanceDataReader as fdr
 import pickle
 import numpy as np
 from plotly import graph_objs as go
@@ -11,19 +11,15 @@ from neuralprophet import set_random_seed
 from sklearn.metrics import mean_squared_error
 
 def app():
-    global data
+    global fdr
     global st
     
-    START = '2000-01-01'
-    TODAY = date.today().strftime('%Y-%m-%d')
+    df = fdr.DataReader('KS11', '2000')
 
-    user_input = st.text_input('Enter Stock Ticker', '^KS11')
-    df = data.DataReader(user_input,"yahoo", START, TODAY)
-
-    st.subheader('Data from 2000 - 2021')
+    st.subheader('코스피 주가지수 2000 - 2021')
     st.write(df.describe())
 
-    st.subheader('현재 주가 차트')
+    st.subheader('코스피 주가지수 차트')
     fig = plot.figure(figsize = (12,6))
     plot.plot(df.Close)
     st.pyplot(fig)
