@@ -41,3 +41,17 @@
 
 
 ---------------------------------------
+
+
+Procfile
+runtime.txt
+setup.sh
+multiapp.py
+ 위 네가지 파일은 Streamlit Cloud 관련 파일
+ 
+requirements.txt
+ 요구 조건 파일
+ 
+app.py
+ apps
+ 웹  애플리케이션 동작 및 소스코드
