@@ -55,3 +55,5 @@ requirements.txt
 app.py
  apps
  웹  애플리케이션 동작 및 소스코드
+
+Code 주피터노트북을 활용한 모델 구축 코드
