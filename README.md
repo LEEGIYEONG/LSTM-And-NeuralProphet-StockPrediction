@@ -43,9 +43,9 @@
 ---------------------------------------
 
 
-Procfile
-runtime.txt
-setup.sh
+Procfile,
+runtime.txt,
+setup.sh,
 multiapp.py
  위 네가지 파일은 Streamlit Cloud 관련 파일
  
