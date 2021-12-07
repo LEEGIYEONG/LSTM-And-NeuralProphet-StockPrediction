@@ -16,7 +16,7 @@ def app():
     
     df = fdr.DataReader('KS11', '2000')
 
-    df_data = df.rename(columns={'Adj Close': '수정 종가', 'Volume': '변동율', 'High': '고가', 'Low': '저가', 'Open': '시가'
+    df_data = df.rename(columns={'Change': '변동률', 'Volume': '거래율', 'High': '고가', 'Low': '저가', 'Open': '시가'
                                  , 'Close': '종가'})
     
     st.subheader('코스피 주가지수 2000 - 2021')
