@@ -1,7 +1,7 @@
 streamlit MultiPage
 
-Main page = first1
+Main page
 
-LSTM Prediction page = forth1
+LSTM Prediction page
 
-NeuralProphet Prediction page = third1
+NeuralProphet Prediction page
