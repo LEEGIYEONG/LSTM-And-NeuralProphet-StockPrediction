@@ -14,7 +14,7 @@ def app():
                                  , 'Close': '종가'})
     
     st.subheader('코스피 주가지수 2000 - 2021')
-    st.write(df.describe())
+    st.write(df_data.describe())
     
 
     st.subheader('코스피 주가지수 차트')
